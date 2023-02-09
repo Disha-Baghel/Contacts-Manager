@@ -11,7 +11,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+<<<<<<< HEAD
 
     //NO Room Database project
     //Using SQLITE
+=======
+>>>>>>> d3e186ab8a11d36e6208ebbfc22f69ee7b52a109
 }
