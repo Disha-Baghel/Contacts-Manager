@@ -17,7 +17,7 @@ public class Contact {
 
     }
 
-    private Contact(String name, String email, int id){
+    public Contact(String name, String email, int id){
         this.name = name;
         this.email = email;
         this.id = id;
