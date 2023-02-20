@@ -70,6 +70,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Getting all contacts
     public ArrayList<Contact> getAllContacts(){
         ArrayList<Contact> contacts = new ArrayList<>();
+
+        String selectQuery = "SELECT * FROM" + Contact.TABLE_NAME + "ORDER BY"+ Contact.COLUMN_ID
+                + "DESC";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()){
+            do{
+                Contact contact = new Contact();
+                contact.setId(cursor.getInt(cursor.getColumnIndex(Contact.COLUMN_ID)));
+                contact.setName(cursor.getString(cursor.getColumnIndex(Contact.COLUMN_NAME)));
+                contact.setEmail(cursor.getString(cursor.getColumnIndex(Contact.COLUMN_EMAIL)));
+
+                contacts.add(contact);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return contacts;
+    }
+
+    public int updateContact(Contact contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Contact.COLUMN_NAME, contact.getName());
+        values.put(Contact.COLUMN_EMAIL, contact.getEmail());
+
+        return db.update(Contact.TABLE_NAME, values, Contact.COLUMN_ID+ "=?",
+                new String[]{String.valueOf(Contact.getId())});
+
     }
 
 }

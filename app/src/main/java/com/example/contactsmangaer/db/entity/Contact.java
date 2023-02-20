@@ -40,7 +40,7 @@ public class Contact {
         this.email = email;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
