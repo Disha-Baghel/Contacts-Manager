@@ -13,7 +13,7 @@ public class Contact {
     private int id;
 
     //3 - Constructor
-    private Contact(){
+    public Contact(){
 
     }
 
